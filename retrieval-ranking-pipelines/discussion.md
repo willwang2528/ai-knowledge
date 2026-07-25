@@ -128,3 +128,51 @@ RAG：改写让问题好搜，检索让证据入围，Rerank 让证据排准，P
 - 推荐系统精排中的 Pointwise、Pairwise、Listwise
 - RAG 检索与生成的分阶段评估
 - 多样性重排、RRF、MMR、DPP 的区别
+
+---
+
+## 2026-07-25：所以 Recall = Retrieval？
+
+### 用户问题
+
+所以 `recall = retrieval`？
+
+### Agent 回答
+
+**不严格相等。**
+
+需要区分“中文工程阶段名”和“英文指标名”：
+
+```text
+中文推荐系统里的“召回阶段”
+≈ Retrieval
+≈ Candidate Generation
+
+英文 Recall
+= 召回率指标
+= 相关对象中有多少被成功找回
+```
+
+在推荐系统语境里，中文工程师常把 Candidate Generation / Retrieval 这一层叫“召回”，所以说“召回层就是 Retrieval 层”通常成立。
+
+但在严格英文技术表达里：
+
+- `retrieval` 是从大规模集合中取得候选的过程。
+- `recall` 是衡量漏没漏掉相关对象的指标。
+
+例如：
+
+```text
+Retriever 从知识库取回 Top-100 Chunk。
+知识库中共有 10 个相关 Chunk，其中 8 个进入 Top-100。
+那么 Recall@100 = 8 / 10 = 0.8。
+```
+
+最不容易混淆的表达方式：
+
+- 系统阶段写 `Retrieval / Candidate Generation（召回阶段）`。
+- 评价指标写 `Recall@K（召回率）`。
+
+### 关键理解
+
+`Retrieval` 做动作，`Recall` 量结果；中文“召回”同时被用来翻译阶段和指标，才造成了混淆。
