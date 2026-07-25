@@ -39,3 +39,43 @@ Use GitHub's SSH endpoint on port 443 for remote inspection and push, while pres
 - **Notes**: Verified the `ssh.github.com:443` ED25519 fingerprint against GitHub's official documentation, authenticated successfully as `willwang2528`, and configured the repository-local SSH command to use port 443.
 
 ---
+
+## [ERR-20260725-002] shell-verification-quoting
+
+**Logged**: 2026-07-25
+**Priority**: low
+**Status**: resolved
+**Area**: docs
+
+### Summary
+
+Backticks inside a double-quoted `rg` pattern were interpreted by the shell as command substitutions.
+
+### Error
+
+```text
+zsh: command not found: discussion.md
+zsh: command not found: concepts.md
+zsh: command not found: references.md
+```
+
+### Context
+
+- The command was only verifying Markdown wording.
+- Project files and Git state were not modified by the failed command.
+
+### Suggested Fix
+
+Use single quotes around search patterns containing Markdown backticks.
+
+### Metadata
+
+- Reproducible: yes
+- Related Files: `AGENTS.md`
+
+### Resolution
+
+- **Resolved**: 2026-07-25
+- **Notes**: Re-ran the check with shell-safe quoting.
+
+---
