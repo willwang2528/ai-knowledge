@@ -426,16 +426,18 @@ xxx
 
 每一个主题使用一个独立目录。
 
-路径：
+主题目录直接位于知识库根目录，与 `AGENTS.md` 同层：
 
 ```text
-/knowledge-agent/topics/
+/knowledge-agent/Topic_Name/
 ```
 
 结构：
 
 ```text
-topics/
+/knowledge-agent/
+├── AGENTS.md
+├── README.md
 └── Topic_Name/
     ├── README.md
     ├── research.md
@@ -549,16 +551,18 @@ topics/
 
 ```text
 /knowledge-agent/
-└── topics/
-    ├── topic-a/
-    ├── topic-b/
-    └── topic-c/
+├── AGENTS.md
+├── README.md
+├── topic-a/
+├── topic-b/
+└── topic-c/
 ```
 
 规则：
 
 - 一个目录对应一个主题。
-- 所有主题目录都位于 `/knowledge-agent/topics/`。
+- 所有主题目录都直接位于 `/knowledge-agent/` 根目录，与 `AGENTS.md` 同层。
+- 禁止额外创建 `topics/` 等主题汇总层级。
 - 不同主题之间不得混用文件。
 - 新建主题时，先创建对应的主题目录，再在该目录内生成完整知识资产。
 - 所有主题内容统一提交到 `main` 分支。
